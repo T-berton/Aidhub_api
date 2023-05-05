@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+# This model initially had no columns defined. If you add columns to the
+# model remove the "{}" from the fixture names and add the columns immediately
+# below each fixture, per the syntax in the comments below
+#
+request_1:
+  user: user_1
+  task_type: Material Needs
+  description: Test Request.
+# column: value
+#
+request_2: 
+  user: user_2
+  task_type: Material Needs
+  description: Test 2 Request.
+# column: value
