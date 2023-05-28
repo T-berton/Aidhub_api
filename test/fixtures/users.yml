@@ -17,3 +17,33 @@ user_2:
   email: johntesttt@test.com
   password_digest: <%= BCrypt::Password.create('test') %>
 # column: value
+
+user_3: 
+  first_name: Steve
+  last_name: Testtt
+  email: stevetesttt@test.com
+  password_digest: <%= BCrypt::Password.create('test') %>
+
+user_4: 
+  first_name: Mike
+  last_name: Testtt
+  email: miketesttt@test.com
+  password_digest: <%= BCrypt::Password.create('test') %>
+
+user_5: 
+  first_name: Luke
+  last_name: Testtt
+  email: luketesttt@test.com
+  password_digest: <%= BCrypt::Password.create('test') %>
+
+user_6: 
+  first_name: James
+  last_name: Testtt
+  email: jamestesttt@test.com
+  password_digest: <%= BCrypt::Password.create('test') %>
+
+user_7: 
+  first_name: David
+  last_name: Testtt
+  email: davidtesttt@test.com
+  password_digest: <%= BCrypt::Password.create('test') %>

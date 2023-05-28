@@ -8,6 +8,9 @@ request_1:
   user: user_1
   task_type: Material Needs
   description: Test Request.
+  latitude: 29.1
+  longitude: 23.2
+  status: unfilled
 # column: value
 #
 request_2: 

@@ -10,4 +10,7 @@ Rails.application.routes.draw do
   resources :messages
   post '/auth/login' => 'authentification#create'
 
+  mount ActionCable.server => "/cable"
+
+
 end

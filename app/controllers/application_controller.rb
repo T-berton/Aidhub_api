@@ -10,6 +10,7 @@ class ApplicationController < ActionController::API
         render json: { error: "Missing token" }, status: :unauthorized
       return
       end 
+      
       begin
         token_decoded = JsonWebToken.decode(token)
         puts "Token decoded: #{token_decoded}"

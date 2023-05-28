@@ -33,11 +33,14 @@ class ConversationsControllerTest < ActionDispatch::IntegrationTest
 
   def test_create
     user = users(:user_1) 
+    user_2 = users(:user_2)
     request = requests(:request_1)
     post_params = {
       conversation: {
-        request_id: request.id 
-      }
+        request_id: request.id,
+      }, 
+      requester_id: user.id,
+      responder_id: user_2.id
     }
     post conversations_url, params: post_params, headers: authenticated_header
     assert_response :created
@@ -71,10 +74,13 @@ class ConversationsControllerTest < ActionDispatch::IntegrationTest
 
   def test_destroy
     conversation = conversations(:conversation_1)
+    user = users(:user_1)
     puts "Before destroy: #{Conversation.count}"
     # Vérifie si la différence de 'Conversation.count' est de -1 après l'exécution du bloc de code
     assert_difference 'Conversation.count', -1 do
-      delete conversation_url(conversation),headers: authenticated_header # Exécute le code pour supprimer la conversation
+      delete conversation_url(conversation),headers: authenticated_header,params:{
+        user_id: user.id
+      } # Exécute le code pour supprimer la conversation
     end
     puts "After destroy: #{Conversation.count}"
     assert_response :success

@@ -24,6 +24,14 @@ class UsersController < ApplicationController
 
     def create 
         @user = User.new(user_params)
+        if params[:user][:government_file]
+            @user.government_file.attach(params[:user][:government_file])
+            if @user.government_file.attached?
+                puts "File attached successfully"
+              else
+                puts "Failed to attach file"
+              end
+        end 
         if @user.save 
             token = JsonWebToken.encode(user_id: @user.id)
             render json: {user: @user, token: token}, status: :created
@@ -35,6 +43,9 @@ class UsersController < ApplicationController
     def update 
         begin
             @user = User.find(params[:id])
+            if params[:user][:government_file]
+                @user.government_file.attach(params[:user][:government_file])
+            end 
             if @user.update(user_params)
                 render json: @user, status: :accepted
             else 
@@ -62,7 +73,7 @@ class UsersController < ApplicationController
 
     private 
         def user_params
-            params.require(:user).permit(:first_name,:last_name,:email,:password,:government_file)
+            params.require(:user).permit(:first_name,:last_name,:email,:password)
         end 
     
 
