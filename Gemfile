@@ -57,3 +57,7 @@ end
 gem "sidekiq", "~> 7.1"
 
 gem "timecop", "~> 0.9.6"
+
+gem "dockerfile-rails", ">= 1.4", :group => :development
+
+gem "redis", "~> 5.0"
