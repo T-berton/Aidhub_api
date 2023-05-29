@@ -7,7 +7,11 @@
 
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
   allow do
-    origins "*"
+    if Rails.env.production?
+      origins "https://aidhub-openclassrooms.netlify.app"
+    else 
+      origins '*'
+    end
 
     resource "*",
       headers: :any,
