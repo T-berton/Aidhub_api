@@ -23,27 +23,27 @@ class MessagesController < ApplicationController
         end
     end
     
-    def create
-        begin
-            @message = Message.new(message_params)
-            @message.user_id = @current_user.id
-            if @message.save
-                begin
-                    ActionCable.server.broadcast("conversations_#{@message.conversation_id}",
-                                  {
-                                      message: @message.as_json(include: {user: {only: [:first_name,:last_name]}})
-                                  })
-                  rescue => e
-                    Rails.logger.error "There was an error with the ActionCable broadcast: #{e.message}"
-                  end
-                render json: @message, status: :created
-            else  
-                render json: @message.errors, status: :unprocessable_entity
-            end 
-        rescue => e 
-            render json: {error: e.message}, status: :internal_server_error
-        end
-    end
+    # def create
+    #     begin
+    #         @message = Message.new(message_params)
+    #         @message.user_id = @current_user.id
+    #         if @message.save
+    #             begin
+    #                 ActionCable.server.broadcast("conversations_#{@message.conversation_id}",
+    #                               {
+    #                                   message: @message.as_json(include: {user: {only: [:first_name,:last_name]}})
+    #                               })
+    #               rescue => e
+    #                 Rails.logger.error "There was an error with the ActionCable broadcast: #{e.message}"
+    #               end
+    #             render json: @message, status: :created
+    #         else  
+    #             render json: @message.errors, status: :unprocessable_entity
+    #         end 
+    #     rescue => e 
+    #         render json: {error: e.message}, status: :internal_server_error
+    #     end
+    # end
     
     def update
         @message = Message.find(params[:id])
