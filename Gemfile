@@ -19,6 +19,7 @@ gem "puma", "~> 5.0"
 
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
+gem "redis", "~> 5.0"
 
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"
@@ -60,4 +61,3 @@ gem "timecop", "~> 0.9.6"
 
 gem "dockerfile-rails", ">= 1.4", :group => :development
 
-gem "redis", "~> 5.0"
