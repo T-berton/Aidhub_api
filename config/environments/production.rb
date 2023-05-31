@@ -35,7 +35,7 @@ Rails.application.configure do
 
   # Mount Action Cable outside main process or domain.
    config.action_cable.mount_path = "/cable"
-   config.action_cable.url = "ws://aidhubapi.fly.dev/cable"
+   config.action_cable.url = "wss://aidhubapi.fly.dev/cable"
    config.action_cable.allowed_request_origins = [ "https://aidhub-openclassrooms.netlify.app" ]
    config.action_cable.worker_pool_size = 5
 
