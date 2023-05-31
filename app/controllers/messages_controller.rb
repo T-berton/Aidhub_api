@@ -28,10 +28,14 @@ class MessagesController < ApplicationController
             @message = Message.new(message_params)
             @message.user_id = @current_user.id
             if @message.save
-                ActionCable.server.broadcast("conversations_#{@message.conversation_id}",
-                {
-                    message: @message.as_json(include: {user: {only: [:first_name,:last_name]}})
-                })
+                begin
+                    ActionCable.server.broadcast("conversations_#{@message.conversation_id}",
+                                  {
+                                      message: @message.as_json(include: {user: {only: [:first_name,:last_name]}})
+                                  })
+                  rescue => e
+                    Rails.logger.error "There was an error with the ActionCable broadcast: #{e.message}"
+                  end
                 render json: @message, status: :created
             else  
                 render json: @message.errors, status: :unprocessable_entity
